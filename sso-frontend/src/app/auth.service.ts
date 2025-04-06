@@ -11,7 +11,7 @@ export class AuthService {
     return signInWithPopup(this.auth, provider).then(res => res.user);
   }
 
-  logout() {
+  logout(): Promise<void> {
     return signOut(this.auth);
   }
 
