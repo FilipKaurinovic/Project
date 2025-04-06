@@ -6,7 +6,9 @@ export class AuthService {
   constructor(private auth: Auth) {}
 
   loginWithGoogle(): Promise<User> {
-    return signInWithPopup(this.auth, new GoogleAuthProvider()).then(res => res.user);
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    return signInWithPopup(this.auth, provider).then(res => res.user);
   }
 
   logout() {
